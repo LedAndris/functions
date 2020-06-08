@@ -32,7 +32,7 @@ end
 ####################################################################################################################################################################################################################
       ]]--
   --Finds an elements index in a table
-  --Return: integer(index)/false
+  --Return: integer(index)/nil
   function ind(table, value)
     for k,v in pairs(table) do
        table[v]=k
