@@ -1,2 +1,2 @@
 # packageREPO
-Some functions dump (very poorly documented)
+Function dump (very poorly documented)
