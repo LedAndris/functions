@@ -1,6 +1,7 @@
 --[[
     Made by: Beke_Rugos
 ]]--
+--MANIF:CL
 --[[
 ####################################################################################################################################################################################################################
 ####################################################################################################################################################################################################################
@@ -148,10 +149,9 @@ end
       --Return: table of strings
 
 
-        function split (inputstr, sep)
-          if sep == nil then
-                  sep = "%s"
-          end
+        function split (inputstr, sepa)
+          sep = sepa or "%s"
+         
           local t={}
           for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
                   table.insert(t, str)
@@ -353,6 +353,105 @@ function reverse(tbl)
                     return str
         end
         end
-
-
     end
+
+
+    function isEven(num)
+      if (num % 1 == 0) then
+      return true
+      else
+      return false
+      end
+      end
+
+
+      function contains(tbl, vl)
+        for k,v in pairs(tbl) do
+        tbl[v] = true 
+        end
+        return tbl[vl] or false
+        end
+        
+
+        function tobool(str)
+          str = tostring(str)
+                 local vals = {
+                   ['false'] = false,
+                   ['true'] = true,
+                   ['0'] = true,
+                   ['1'] = false
+                 }
+                 return vals[str] or false
+         
+                 end
+
+                 function isValueInList(list, value)
+                  local function iter(n)
+                      return list[n] == value or (n <= #list and iter(n+1) or false)
+                  end
+                  return iter(1)
+              end
+
+
+              function spawncar(vehicleName)
+                if not IsModelInCdimage(vehicleName) or not IsModelAVehicle(vehicleName) then
+                      print('Car denied')
+                       return
+                   end
+                       print('Loading car...')
+                       RequestModel(vehicleName)
+                           while not HasModelLoaded(vehicleName) do
+                               Wait(500) 
+                           end
+                           local pid = PlayerPedId()
+                           local vehicle = CreateVehicle(vehicleName, GetEntityCoords(pid), GetEntityHeading(pid), true, true)
+                           SetEntityAsNoLongerNeeded(vehicle)
+                           print('Spawned vehicle with id: '..vehicle)
+               end
+
+
+               function getId(name)
+                local names = {}
+                local ptable = GetActivePlayers()
+                for _, i in ipairs(ptable) do
+                names[GetPlayerName(i)] = GetPlayerServerId(i)
+                end
+                return names[name] or -1
+                end
+
+                function equal(o1, o2)
+                  if type(o1) == 'table' and type(o2) == table then
+                  local function d(o)
+                      if type(o) == 'table' then
+                         local s = '{ '
+                         for k,v in pairs(o) do
+                            if type(k) ~= 'number' then k = '"'..k..'"' end
+                            s = s .. '['..k..'] = ' .. d(v) .. ', \n'
+                         end
+                         return s .. '} '
+                      else
+                         return tostring(o)
+                      end
+                   end
+                  if d(o1) == d(o2) then
+                  return true
+                  else
+                  return false
+                  end
+              else
+                  if o1 == o2 then
+                      return true
+                  end
+                  return false
+                  end
+              end
+                  
+              function GetIdByLicense(license)
+                local players = GetPlayers()
+                local ret = {}
+                for k,v in pairs(players) do
+                ret[srl.GetAllIdentifiers(v).license] = v
+                end
+                return ret[license] or false
+                end
+                
