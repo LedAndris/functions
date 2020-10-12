@@ -1,5 +1,5 @@
 --[[
-    Made by: Beke_Rugos
+    Made by: ReincarnatedJesus#7545
 ]]--
 --MANIF:CL
 --[[
@@ -176,6 +176,14 @@ end
 ####################################################################################################################################################################################################################
 ####################################################################################################################################################################################################################
       ]]--
+      --Gets all identifiers of a player (server side)
+      --returns: 
+      --[[
+        .steam: steam id
+        .license: fivem license
+        .dsicord: discord id
+        it returns more ids but I've never really used those
+      ]]
       function GetAllIdentifiers(player)
         local identifiers = {}
         for i = 0, GetNumPlayerIdentifiers(player) - 1 do
@@ -188,7 +196,7 @@ end
         return identifiers
     end
 
-
+--Finds the highest number in a table
     function highest(tbl)
       local ttbl = {}
       for k,v in pairs(tbl) do
@@ -202,7 +210,7 @@ end
 ####################################################################################################################################################################################################################
 ####################################################################################################################################################################################################################
       ]]--
-
+--Removes holes from a table
       function remnils(t)
           local ans = {}
           for _,v in pairs(t) do
@@ -216,7 +224,7 @@ end
 ####################################################################################################################################################################################################################
       ]]--
 
-
+--Dumps a table (very useful)
         function dump(o)
           if type(o) == 'table' then
              local s = '{ '
@@ -234,7 +242,7 @@ end
 ####################################################################################################################################################################################################################
 ####################################################################################################################################################################################################################
       ]]--
-
+--Idk whats this for, I just tossed this here some day and I cant remember so if you can test it please pr it
        function clear(o)
           local hash = {}
           local res = {}
@@ -252,6 +260,7 @@ end
         ####################################################################################################################################################################################################################
         ####################################################################################################################################################################################################################
               ]]--
+              --Opens a textbox for the player to input something (untested)
               function read()
 
                 DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
@@ -266,7 +275,7 @@ end
             end
 
 
-
+--some api shit for me
 
             RegisterNetEvent(':Notif')
 AddEventHandler(':Notif', function(exc, ico, nm, titl, txt)
@@ -278,6 +287,7 @@ print('[:Notif]: Client notif triggered')
 
 end)
 
+--some api shit for me
 
 RegisterNetEvent(':Cl_Notif')
 AddEventHandler(':Cl_Notif', function(exc, ico, nm, titl, txt, pn)
@@ -292,6 +302,7 @@ end)
         ####################################################################################################################################################################################################################
         ####################################################################################################################################################################################################################
               ]]--
+                --Reverses a table
 function reverse(tbl)
   local ret = {}
   table.sort(tbl)
@@ -302,7 +313,7 @@ function reverse(tbl)
   end
 
 
-       
+       --Draws a text somewhere
   function drawTxt(x, y ,width, height, text, r,g,b,a, font)
     SetTextFont(0) -- 0-4
     SetTextScale(width, height) -- Size of text
@@ -311,7 +322,7 @@ function reverse(tbl)
     AddTextComponentString(txt) -- Main Text string
     DrawText(x, y)
     end
-
+--Gets the minimap coords
     function GetMinimapAnchor()
         -- Safezone goes from 1.0 (no gap) to 0.9 (5% gap (1/20))
         -- 0.05 * ((safezone - 0.9) * 10)
@@ -336,7 +347,7 @@ function reverse(tbl)
         return Minimap
     end
 
-    
+    --completely useless
     function conc(args)
       local subs = {}
       if #args ~= 0 then
@@ -355,7 +366,7 @@ function reverse(tbl)
         end
     end
 
-
+--Returns true if a number is even
     function isEven(num)
       if (num % 1 == 0) then
       return true
@@ -364,7 +375,7 @@ function reverse(tbl)
       end
       end
 
-
+      --Checks whether an array contains something or no (wihtout ifs!!)
       function contains(tbl, vl)
         for k,v in pairs(tbl) do
         tbl[v] = true 
@@ -372,7 +383,7 @@ function reverse(tbl)
         return tbl[vl] or false
         end
         
-
+--converts string, numbers to booleans (actually pretty useful)
         function tobool(str)
           str = tostring(str)
                  local vals = {
@@ -384,7 +395,7 @@ function reverse(tbl)
                  return vals[str] or false
          
                  end
-
+--Checks whether an array contains something or no (wihtout ifs!!, but in an other way) (thank you GlitchDetector <3)
                  function isValueInList(list, value)
                   local function iter(n)
                       return list[n] == value or (n <= #list and iter(n+1) or false)
@@ -392,7 +403,7 @@ function reverse(tbl)
                   return iter(1)
               end
 
-
+--Spawns a vehicle
               function spawncar(vehicleName)
                 if not IsModelInCdimage(vehicleName) or not IsModelAVehicle(vehicleName) then
                       print('Car denied')
@@ -409,7 +420,7 @@ function reverse(tbl)
                            print('Spawned vehicle with id: '..vehicle)
                end
 
-
+--Gets a players id by its name
                function getId(name)
                 local names = {}
                 local ptable = GetActivePlayers()
@@ -418,7 +429,7 @@ function reverse(tbl)
                 end
                 return names[name] or -1
                 end
-
+--I have no idea wtf is this 
                 function equal(o1, o2)
                   if type(o1) == 'table' and type(o2) == table then
                   local function d(o)
@@ -445,7 +456,7 @@ function reverse(tbl)
                   return false
                   end
               end
-                  
+                  --Gets a players id by its fivem license
               function GetIdByLicense(license)
                 local players = GetPlayers()
                 local ret = {}
@@ -455,7 +466,7 @@ function reverse(tbl)
                 return ret[license] or false
                 end
                 
-
+--benchmarks a function
                 function benchmark(func)
                   local t1 = os.clock() * 1000
                   func()
@@ -463,7 +474,7 @@ function reverse(tbl)
                   return (string.format('%f', tostring(t2)))
                   end
 
-
+--vector math distance calculation
                   dist = function(vec1 , vec2, useZ)
                     if useZ then
                     return #(vec1 - vec2)
@@ -474,7 +485,9 @@ function reverse(tbl)
                     function firstToUpper(str)
                       return (str:gsub("^%l", string.upper))
                   end
-
+--This checks the bigger difference between 2 numbers
+--Example
+--checkBiggerDiff(10, 15, 1, 2) --will return a (first 2 numbers)
                   function checkBiggerDiff(num1_1, num1_2, num2_1, num2_2)
                     local diff = num1_1 - num1_2
                     local diff2 = num2_1 - num2_2
@@ -487,11 +500,11 @@ function reverse(tbl)
                     end
                     end
 
-
+                    --converts a strings first character to uppercase
                     function firstToUpper(str)
                       return (str:gsub("^%l", string.upper))
                   end
-
+                  --gets an array of integers average
                   function avg(numbs)
                     local val = 0
                     for k,v in ipairs(numbs) do
@@ -502,7 +515,7 @@ function reverse(tbl)
                     end
 
                     --SHORTCUTS:
-
+--These are used by me, but you can use it too
                     async = CreateThread
 regev = RegisterNetEvent
 handle = AddEventHandler
