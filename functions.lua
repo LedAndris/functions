@@ -455,3 +455,58 @@ function reverse(tbl)
                 return ret[license] or false
                 end
                 
+
+                function benchmark(func)
+                  local t1 = os.clock() * 1000
+                  func()
+                  local t2 = math.abs(t1 - os.clock() * 1000)
+                  return (string.format('%f', tostring(t2)))
+                  end
+
+
+                  dist = function(vec1 , vec2, useZ)
+                    if useZ then
+                    return #(vec1 - vec2)
+                    else
+                    return #(vec1.xy - vec2.xy)
+                    end
+                    end
+                    function firstToUpper(str)
+                      return (str:gsub("^%l", string.upper))
+                  end
+
+                  function checkBiggerDiff(num1_1, num1_2, num2_1, num2_2)
+                    local diff = num1_1 - num1_2
+                    local diff2 = num2_1 - num2_2
+                    if diff > diff2 then
+                    return 'b'
+                    elseif diff < diff2 then
+                    return 'a'
+                    else
+                    return 'ab'
+                    end
+                    end
+
+
+                    function firstToUpper(str)
+                      return (str:gsub("^%l", string.upper))
+                  end
+
+                  function avg(numbs)
+                    local val = 0
+                    for k,v in ipairs(numbs) do
+                    val = val + v
+                    end
+                    local avg = val / #numbs
+                    return avg
+                    end
+
+                    --SHORTCUTS:
+
+                    async = CreateThread
+regev = RegisterNetEvent
+handle = AddEventHandler
+trigger = {}
+trigger.sv = TriggerServerEvent
+trigger.cl = TriggerClientEvent
+trigger.curr = TriggerEvent
