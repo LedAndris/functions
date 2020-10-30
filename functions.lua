@@ -242,19 +242,15 @@ end
 ####################################################################################################################################################################################################################
 ####################################################################################################################################################################################################################
       ]]--
---Idk whats this for, I just tossed this here some day and I cant remember so if you can test it please pr it
-       function clear(o)
-          local hash = {}
-          local res = {}
-          for _,v in ipairs(o) do
-             if (not hash[v]) then
-                 res[#res+1] = v -- you could print here instead of saving to result table if you wanted
-                 hash[v] = true
-             end
-          
-          end
-          return res
-       end      
+--Cleans a table from annoying nils
+function clean(t)
+	local ans = {}
+	for _,v in pairs(t) do
+	  ans[ #ans+1 ] = v
+	end
+	return ans
+  end
+     
         --[[
         ####################################################################################################################################################################################################################
         ####################################################################################################################################################################################################################
@@ -523,3 +519,16 @@ trigger = {}
 trigger.sv = TriggerServerEvent
 trigger.cl = TriggerClientEvent
 trigger.curr = TriggerEvent
+
+--Should I explain this?
+function round(num, numOfPlaces)
+  numOfPlaces = numOfPlaces or 0
+  local result = math.floor(num * 10^numOfPlaces + 0.5) / 10^numOfPlaces
+  return numOfPlaces == 0 and math.floor(result) or result
+end
+--Sets the blips title
+function SetBlipTitle(blip, text)
+  BeginTextCommandSetBlipName("STRING")
+  AddTextComponentString(text)
+  EndTextCommandSetBlipName(blip)
+end
