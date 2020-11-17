@@ -532,3 +532,11 @@ function SetBlipTitle(blip, text)
   AddTextComponentString(text)
   EndTextCommandSetBlipName(blip)
 end
+
+
+--Splits a string to words
+function tokenize(str)
+  local tokens = {}
+  for token in str:gmatch("%w+") do tokens[#tokens + 1] = token end
+  return tokens
+  end
