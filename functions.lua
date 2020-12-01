@@ -540,3 +540,16 @@ function tokenize(str)
   for token in str:gmatch("%w+") do tokens[#tokens + 1] = token end
   return tokens
   end
+
+
+--Filters words from a string
+  function filter(str, words)
+    local base = "******************************************************************"
+    for k,v in ipairs(words) do
+    str = str:gsub(v, base:sub(1, #v))
+    end
+    return str
+    end
+    --example:
+    local filtered = filter("Im a little insert n word here who is a fucker", {"fucker", "insert n word here"})
+    print(filtered) --will print: Im a little ****************** who is a ******
