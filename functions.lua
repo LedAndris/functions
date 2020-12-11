@@ -553,3 +553,28 @@ function tokenize(str)
     --example:
     local filtered = filter("Im a little insert n word here who is a fucker", {"fucker", "insert n word here"})
     print(filtered) --will print: Im a little ****************** who is a ******
+
+    --Create funny sentences
+    --example: I am gay: I a m  g a y
+    function space(text, obj)
+      obj = obj or {} --you get these right?
+      if obj.upper then
+      text = text:upper() --uppercase
+      end
+      if obj.lower then
+      text = text:lower() --lowercase
+      end
+      local new = {}
+      for l in text:gmatch(".") do
+      table.insert(new, l.." ")
+      end
+      return table.concat(new)
+      end
+
+--Template strings, just like in js
+      function interp(s, tab)
+        return (s:gsub('($%b{})', function(w) return tab[w:sub(3, -2)] or w end))
+      end
+      getmetatable("").__mod = interp
+      --example:
+      print("Hey ${name}, fuck you" % {name="Judas"})
