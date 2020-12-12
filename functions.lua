@@ -583,7 +583,6 @@ function tokenize(str)
 --Check if a string is empty
       function isEmtpy(str)
         local match = str:match("%s+") or ""
-        print(match)
         if #match == #str then
         return true
         else
