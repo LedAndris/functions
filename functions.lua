@@ -526,7 +526,7 @@ function round(num, numOfPlaces)
   local result = math.floor(num * 10^numOfPlaces + 0.5) / 10^numOfPlaces
   return numOfPlaces == 0 and math.floor(result) or result
 end
---Sets the blips title
+--Sets a blips title
 function SetBlipTitle(blip, text)
   BeginTextCommandSetBlipName("STRING")
   AddTextComponentString(text)
@@ -578,3 +578,15 @@ function tokenize(str)
       getmetatable("").__mod = interp
       --example:
       print("Hey ${name}, fuck you" % {name="Judas"})
+
+
+--Check if a string is empty
+      function isEmtpy(str)
+        local match = str:match("%s+") or ""
+        print(match)
+        if #match == #str then
+        return true
+        else
+        return false
+        end
+        end
