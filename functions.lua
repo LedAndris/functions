@@ -425,7 +425,7 @@ function reverse(tbl)
                     function firstToUpper(str)
                       return (str:gsub("^%l", string.upper))
                   end
-                  --gets an array of integers average
+                  --gets an array of integers's average
                   function avg(numbs)
                     local val = 0
                     for k,v in ipairs(numbs) do
