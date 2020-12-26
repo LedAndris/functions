@@ -514,3 +514,14 @@ function tokenize(str)
         return false
         end
         end
+
+--Reverses an array
+        function reverseArray(a)
+          local r = {}
+          local i = #a
+          for k,v in ipairs(a) do
+          r[i] = v
+          i = i -1
+          end
+          return r
+          end
